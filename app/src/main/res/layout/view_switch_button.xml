@@ -1,0 +1,29 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/tv_toolbar_title"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="10dp">
+
+    <TextView
+        android:id="@+id/tv_switchbutton_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_tv_switch_norma_left_focus"
+        android:clickable="true"
+        android:text="左边"
+        android:textColor="@color/toolbar_text_color"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tv_switchbutton_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/tv_switchbutton_left"
+        android:background="@drawable/shape_tv_switch_normal_right"
+        android:clickable="true"
+        android:text="右边"
+        android:textColor="@color/toolbar_text_color"
+        android:textSize="20sp" />
+
+</RelativeLayout>

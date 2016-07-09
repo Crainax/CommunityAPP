@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bb_menu_scene_find"
+        android:icon="@android:drawable/star_on"
+        android:title="场景寻人" />
+    <item
+        android:id="@+id/bb_menu_accurate_find"
+        android:icon="@android:drawable/star_on"
+        android:title="精确寻人" />
+    <item
+        android:id="@+id/bb_menu_organization"
+        android:icon="@android:drawable/star_on"
+        android:title="寻找组织" />
+    <item
+        android:id="@+id/bb_menu_me"
+        android:icon="@android:drawable/star_on"
+        android:title="我" />
+</menu>

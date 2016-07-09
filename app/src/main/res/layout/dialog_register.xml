@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <EditText
+        android:id="@+id/et_register_dialog_school"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="学校" />
+
+    <EditText
+        android:id="@+id/et_register_dialog_studentID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_register_dialog_school"
+        android:hint="学号" />
+
+    <EditText
+        android:id="@+id/et_register_dialog_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_register_dialog_studentID"
+        android:hint="姓名" />
+
+    <EditText
+        android:id="@+id/et_register_dialog_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_register_dialog_name"
+        android:hint="学号" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_register_dialog_nickname"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/bt_login_dialog_login"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="register" />
+
+        <Button
+            android:id="@+id/bt_login_dialog_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_weight="1"
+            android:text="cancel" />
+    </LinearLayout>
+</RelativeLayout>
