@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="titleText" format="string" />
+    <attr name="iconDrawable" format="reference" />
+
+    <declare-styleable name="MeItemView">
+        <attr name="titleText" />
+        <attr name="iconDrawable" />
+    </declare-styleable>
+    
+</resources>

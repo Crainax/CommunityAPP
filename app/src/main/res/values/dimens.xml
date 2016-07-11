@@ -2,4 +2,6 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="iv_scene_find_single_user_avatar">48dp</dimen>
+    <dimen name="iv_me_avatar">96dp</dimen>
 </resources>

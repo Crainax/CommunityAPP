@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/view_center_toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:orientation="vertical">
+
+        <!--昵称-->
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv_me_avatar"
+                    android:layout_width="@dimen/iv_me_avatar"
+                    android:layout_height="@dimen/iv_me_avatar"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/placeholder"
+                    app:civ_border_color="@android:color/black"
+                    app:civ_border_width="1dp" />
+
+                <LinearLayout
+                    android:id="@+id/click_me_edit_my_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/iv_me_avatar"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@id/iv_me_avatar"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toEndOf="@+id/iv_me_avatar"
+                    android:layout_toRightOf="@+id/iv_me_avatar"
+                    android:orientation="vertical"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:id="@+id/tv_me_user"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="bottom"
+                        android:text="昵称"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/tv_me_profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="center_vertical"
+                        android:text="查看或完善个人资料"
+                        android:textColor="@android:color/black" />
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <!--列表-->
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <com.unique.app.ui.view.MeItemView
+                    android:id="@+id/click_me_my_follow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    app:iconDrawable="@android:drawable/star_big_on"
+                    app:titleText="我的关注" />
+
+                <com.unique.app.ui.view.MeItemView
+                    android:id="@+id/click_me_launch_act"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    app:iconDrawable="@android:drawable/star_big_on"
+                    app:titleText="我发起过的活动" />
+
+                <com.unique.app.ui.view.MeItemView
+                    android:id="@+id/click_me_partake_act"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    app:iconDrawable="@android:drawable/star_big_on"
+                    app:titleText="我参与过的活动" />
+
+                <com.unique.app.ui.view.MeItemView
+                    android:id="@+id/click_me_msg_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    app:iconDrawable="@android:drawable/star_big_on"
+                    app:titleText="消息列表" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <!--设置与退出-->
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <com.unique.app.ui.view.MeItemView
+                    android:id="@+id/click_me_setting"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    app:iconDrawable="@android:drawable/star_big_on"
+                    app:titleText="设置" />
+
+                <com.unique.app.ui.view.MeItemView
+                    android:id="@+id/click_me_exit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    app:iconDrawable="@android:drawable/star_big_on"
+                    app:titleText="退出" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+</RelativeLayout>

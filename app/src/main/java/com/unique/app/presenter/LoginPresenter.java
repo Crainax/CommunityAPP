@@ -38,6 +38,7 @@ public class LoginPresenter {
                     mLoginView.showFailMsg(e.getMessage());
                 } else {
                     //登录成功的逻辑
+                    mLoginView.closeAllDialog();
                     mLoginView.goToMainActivity();
                 }
 
