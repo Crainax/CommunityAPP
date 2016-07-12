@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -84,11 +85,12 @@
             android:layout_marginTop="5dp"
             android:background="?attr/selectableItemBackground">
 
-            <android.support.v4.widget.CircleImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/iv_scene_find_single_user_avatar"
                 android:layout_width="@dimen/iv_scene_find_single_user_avatar"
                 android:layout_height="@dimen/iv_scene_find_single_user_avatar"
-                android:src="@android:drawable/ic_dialog_map" />
+                app:civ_border_width="1dp"
+                android:src="@drawable/placeholder" />
 
             <TextView
                 android:layout_width="wrap_content"

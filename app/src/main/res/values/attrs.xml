@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--这是我的界面的item-->
     <attr name="titleText" format="string" />
     <attr name="iconDrawable" format="reference" />
 
@@ -8,5 +9,9 @@
         <attr name="titleText" />
         <attr name="iconDrawable" />
     </declare-styleable>
-    
+
+    <!--这是CenterToolbar的属性-->
+    <declare-styleable name="CenterToolbar">
+        <attr name="titleText" />
+    </declare-styleable>
 </resources>

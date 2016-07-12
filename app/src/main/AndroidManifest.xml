@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.unique.app">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,7 +16,9 @@
         <activity android:name=".ui.SettingActivity" />
         <activity android:name=".ui.PartakeActivity" />
         <activity android:name=".ui.LauncherActActivity" />
-        <activity android:name=".ui.MyFollowActivity" />
+        <activity android:name=".ui.UserInfoActivity" />
+        <activity android:name=".ui.MyFollowActivity" >
+        </activity>
         <activity android:name=".ui.MsgListActivity" />
         <activity android:name=".ui.EditProfileActivity" />
         <activity android:name=".ui.MeActivity">

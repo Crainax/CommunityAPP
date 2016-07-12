@@ -1,4 +1,4 @@
-package com.unique.app.ui;
+package com.unique.app.ui.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

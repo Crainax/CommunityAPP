@@ -14,6 +14,7 @@ public class UserInfo {
 
 
     private String userName;
+    private String avatarUrl;
 
 
     public String getUserName() {
@@ -22,5 +23,13 @@ public class UserInfo {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 }

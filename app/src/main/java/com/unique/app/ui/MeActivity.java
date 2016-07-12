@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.unique.app.R;
+import com.unique.app.ui.view.CenterToolbar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,20 +26,31 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 public class MeActivity extends BaseActivity {
 
-    @BindView(R.id.tv_toolbar_title)
-    TextView mTvToolbarTitle;
     @BindView(R.id.iv_me_avatar)
     CircleImageView mIvMeAvatar;
     @BindView(R.id.tv_me_user)
     TextView mTvMeUser;
     @BindView(R.id.tv_me_profile)
     TextView mTvMeProfile;
+    @BindView(R.id.toolbar)
+    CenterToolbar mToolbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_me);
         ButterKnife.bind(this);
+        initToolbar();
+    }
+
+    /**
+     * 初始化Toolbar
+     */
+    private void initToolbar() {
+
+        mToolbar.setTitle("个人主页");
+
     }
 
     @OnClick({R.id.click_me_edit_my_profile,R.id.click_me_my_follow, R.id.click_me_launch_act, R.id.click_me_partake_act, R.id.click_me_msg_list, R.id.click_me_setting, R.id.click_me_exit})
