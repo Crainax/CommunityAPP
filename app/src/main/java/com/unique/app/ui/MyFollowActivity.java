@@ -3,11 +3,9 @@ package com.unique.app.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.ActionBar;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.MenuItem;
 import android.view.View;
 
 import com.unique.app.R;
@@ -34,7 +32,10 @@ import butterknife.ButterKnife;
  * @version 1.0 <br/>
  * @since 2016/7/11 <br/>
  */
-public class MyFollowActivity extends BaseActivity implements MyFollowAdapter.OnMyFollowItemClickListener {
+public class MyFollowActivity extends BaseActivity implements MyFollowAdapter.OnMyFollowItemClickListener, CenterToolbar.OnToolbarBackClickListener {
+
+    private static final String TAG = "Crainax";
+
     @BindView(R.id.rv_my_follow)
     RecyclerView mRvMyFollow;
     @BindView(R.id.toolbar)
@@ -61,28 +62,18 @@ public class MyFollowActivity extends BaseActivity implements MyFollowAdapter.On
         mRvMyFollow.setItemAnimator(new DefaultItemAnimator());
 
         int spacingInPixel = getResources().getDimensionPixelSize(R.dimen.rv_my_follow_item_distance);
+        // TODO: 2016/7/12 上传到JCenter()中去
         mRvMyFollow.addItemDecoration(new SpaceItemDecoration(spacingInPixel));
         mMyFollowAdapter.setOnMyFollowItemClickListener(this);
+
     }
 
     private void initToolbar() {
+
         mToolbar.setTitle("我的关注");
-        setSupportActionBar(mToolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
+        mToolbar.enableBackButton(true);
+        mToolbar.setOnToolbarBackClickListener(this);
 
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @FakeContent
@@ -94,15 +85,17 @@ public class MyFollowActivity extends BaseActivity implements MyFollowAdapter.On
             Random random = new Random();
             UserInfo userInfo = new UserInfo();
             userInfo.setUserName("用户" + random.nextInt(100000));
+            userInfo.setLaunchActCount(random.nextInt(10));
+            userInfo.setPartakeInNum(random.nextInt(20));
+            userInfo.setFriendlyNum(random.nextFloat() * 5);
+            userInfo.setPrivate(random.nextBoolean());
+            userInfo.setTel(random.nextLong() + "");
             switch (random.nextInt(2)) {
                 case 0:
-                    userInfo.setAvatarUrl("http://static.tieba.baidu.com/tb/editor/images/client/image_emoticon25.png");
+                    userInfo.setAvatarUrl("http://avatar.csdn.net/1/D/D/1_xipiaoyouzi.jpg");
                     break;
                 case 1:
-                    userInfo.setAvatarUrl("http://tb2.bdstatic.com/tb/static-user/widget/celebrity/img/single_member_100_0b51e9e.png");
-                    break;
-                case 2:
-                    userInfo.setAvatarUrl("http://tb2.bdstatic.com/tb/static-user/widget/celebrity/img/single_member_100_0b51e9e.png");
+                    userInfo.setAvatarUrl("http://avatar.csdn.net/A/6/6/1_xuewater.jpg");
                     break;
             }
             list.add(userInfo);
@@ -114,11 +107,18 @@ public class MyFollowActivity extends BaseActivity implements MyFollowAdapter.On
     @Override
     public void onMyFollowUserNameClick(View view, UserInfo userInfo) {
         Intent intent = new Intent(MyFollowActivity.this, UserInfoActivity.class);
+        intent.putExtra(UserInfoActivity.INTENT_DATA_USER, userInfo);
+        intent.putExtra(UserInfoActivity.INTENT_DATA_IS_FOLLOW, true);
         startActivity(intent);
     }
 
     @Override
     public void onMyFollowAvatarClick(View view, UserInfo userInfo) {
         // TODO: 2016/7/12 放大图片
+    }
+
+    @Override
+    public void onToolbarBackClick(View view) {
+        finish();
     }
 }

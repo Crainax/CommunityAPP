@@ -1,9 +1,8 @@
 package com.unique.app.ui;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
-
-import com.unique.app.R;
 
 /**
  * Project: CommnitiAPP <br/>
@@ -13,13 +12,12 @@ import com.unique.app.R;
  *
  * @author Crainax <br/>
  * @version 1.0 <br/>
- * @since 2016/7/11 <br/>
+ * @since 2016/7/12 <br/>
  */
-public class LauncherActActivity extends BaseActivity{
+public class TalkActivity extends BaseActivity{
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_launch_act);
     }
 }

@@ -1,4 +1,4 @@
-package com.unique.app.ui;
+package com.unique.app;
 
 import android.app.Application;
 

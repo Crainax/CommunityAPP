@@ -51,6 +51,7 @@ public class MeActivity extends BaseActivity {
 
         mToolbar.setTitle("个人主页");
 
+
     }
 
     @OnClick({R.id.click_me_edit_my_profile,R.id.click_me_my_follow, R.id.click_me_launch_act, R.id.click_me_partake_act, R.id.click_me_msg_list, R.id.click_me_setting, R.id.click_me_exit})

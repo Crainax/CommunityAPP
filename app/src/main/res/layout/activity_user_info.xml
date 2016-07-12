@@ -9,61 +9,205 @@
         android:id="@+id/toolbar"
         layout="@layout/layout_center_toolbar" />
 
-    <!--昵称及两个按钮-->
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/iv_user_info_avatar"
-            android:layout_width="@dimen/iv_user_info_avatar"
-            android:layout_height="@dimen/iv_user_info_avatar"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/placeholder"
-            app:civ_border_width="1dp" />
-
-        <TextView
-            android:id="@+id/iv_user_info_user_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="30dp"
-            android:layout_marginStart="30dp"
-            android:layout_toEndOf="@+id/iv_user_info_avatar"
-            android:layout_toRightOf="@+id/iv_user_info_avatar"
-            android:text="昵称"
-            android:textColor="@android:color/black"
-            android:textSize="20sp" />
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/click_user_info_follow"
-                android:layout_width="wrap_content"
+            <!--昵称及两个按钮-->
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="关注" />
+                android:padding="20dp">
 
-            <Button
-                android:id="@+id/click_user_info_talk"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv_user_info_avatar"
+                    android:layout_width="@dimen/iv_user_info_avatar"
+                    android:layout_height="@dimen/iv_user_info_avatar"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/placeholder"
+                    app:civ_border_width="1dp" />
+
+                <TextView
+                    android:id="@+id/tv_user_info_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_toEndOf="@+id/iv_user_info_avatar"
+                    android:layout_toRightOf="@+id/iv_user_info_avatar"
+                    android:text="昵称"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/click_user_info_follow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="关注" />
+
+                    <Button
+                        android:id="@+id/click_user_info_talk"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="对话" />
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <!--参数-->
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp"
+                    android:weightSum="3">
+
+                    <!--已发起的活动-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/UserInfoTextTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:text="已发起活动" />
+
+                        <TextView
+                            android:id="@+id/tv_user_info_launch_act_num"
+                            style="@style/UserInfoTextContent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:text="54" />
+
+                    </LinearLayout>
+                    <!--已发起的活动-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/UserInfoTextTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:text="参与过的活动" />
+
+                        <TextView
+                            android:id="@+id/tv_user_info_partake_in_num"
+                            style="@style/UserInfoTextContent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:text="13" />
+
+                    </LinearLayout>
+                    <!--已发起的活动-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/UserInfoTextTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:text="友善度" />
+
+                        <TextView
+                            android:id="@+id/tv_user_info_friendly_num"
+                            style="@style/UserInfoTextContent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:text="4.9" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+
+            <TextView
+                android:id="@+id/tv_user_info_tel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="对话" />
+                android:layout_margin="10dp"
+                android:text="联系方式:未公开"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:text="Ta加入的组织:"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_user_info_org"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginStart="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:text="Ta的标签:"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_user_info_tag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginStart="15dp" />
         </LinearLayout>
-
-
-    </RelativeLayout>
-
-    <!--参数-->
-
+    </ScrollView>
 
 
 </LinearLayout>

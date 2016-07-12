@@ -25,6 +25,20 @@ public class CenterToolbar extends Toolbar {
 
     private TextView mTvTitle;
 
+    private OnToolbarBackClickListener onToolbarBackClickListener;
+    private View mClickBack;
+
+    public interface OnToolbarBackClickListener {
+        void onToolbarBackClick(View view);
+    }
+
+    /**
+     * OnToolbarBackClickListener的Setter
+     */
+    public void setOnToolbarBackClickListener(OnToolbarBackClickListener l) {
+        this.onToolbarBackClickListener = l;
+    }
+
     public CenterToolbar(Context context) {
         this(context, null);
     }
@@ -54,6 +68,18 @@ public class CenterToolbar extends Toolbar {
                 .inflate(R.layout.view_center_toolbar_textview, this, true);
 
         mTvTitle = ((TextView) rootView.findViewById(R.id.tv_toolbar_title_no_code));
+        mClickBack = rootView.findViewById(R.id.click_toolbar_back);
+
+        //后退按钮
+        mClickBack.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onToolbarBackClickListener != null) {
+                    onToolbarBackClickListener.onToolbarBackClick(v);
+                }
+            }
+        });
+
         setTitle(titleStr);
     }
 
@@ -65,5 +91,12 @@ public class CenterToolbar extends Toolbar {
     @Override
     public void setTitle(@StringRes int resId) {
         setTitle(getContext().getString(resId));
+    }
+
+    public void enableBackButton(boolean enable) {
+        if (enable)
+            mClickBack.setVisibility(VISIBLE);
+        else
+            mClickBack.setVisibility(GONE);
     }
 }

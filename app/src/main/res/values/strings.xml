@@ -1,3 +1,4 @@
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">社交APP</string>
+    <string name="act_user_info_tel">联系方式:<xliff:g id="tel">%1$s</xliff:g></string>
 </resources>

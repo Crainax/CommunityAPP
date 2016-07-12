@@ -8,4 +8,19 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <!--文本样式-->
+    <!--标题-->
+    <style name="UserInfoTextTitle">
+
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">16sp</item>
+
+    </style>
+
+    <style name="UserInfoTextContent">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">64sp</item>
+
+    </style>
 </resources>

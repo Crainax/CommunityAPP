@@ -64,6 +64,7 @@ public class MyFollowAdapter extends RecyclerView.Adapter<MyFollowAdapter.ViewHo
         Glide.with(holder.itemView.getContext())
                 .load(userInfo.getAvatarUrl())
                 .placeholder(R.drawable.placeholder)
+                .dontAnimate()
                 .into(holder.IvAvatar);
 
         bindClickListener(holder, position);

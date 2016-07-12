@@ -21,6 +21,7 @@
         </activity>
         <activity android:name=".ui.MsgListActivity" />
         <activity android:name=".ui.EditProfileActivity" />
+        <activity android:name=".ui.TalkActivity" />
         <activity android:name=".ui.MeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
