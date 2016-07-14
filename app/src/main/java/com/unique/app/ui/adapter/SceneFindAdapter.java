@@ -7,8 +7,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.unique.app.R;
-import com.unique.app.entity.SceneFindInfo;
+import com.unique.app.entity.SceneFindSingleInfo;
+import com.unique.app.entity.UserInfo;
 import com.unique.app.util.DateUtils;
 
 import java.util.List;
@@ -29,24 +31,27 @@ import butterknife.ButterKnife;
 public class SceneFindAdapter extends RecyclerView.Adapter<SceneFindAdapter.ViewHolder> {
 
 
-    private List<SceneFindInfo> datas;
-    private OnSceneFindViewClickListener onSceneFindViewClickListener;
-    private OnSceneFindViewLikeClickListener onSceneFindViewLikeClickListener;
-    private OnSceneFindViewUserClickListener onSceneFindViewUserClickListener;
+    private List<SceneFindSingleInfo> datas;
+    private OnSceneFindItemClickListener onSceneFindItemClickListener;
 
-    public interface OnSceneFindViewClickListener {
-        void onSceneFindViewClick(View view, int position);
+    public interface OnSceneFindItemClickListener {
+        void onSceneFindItemClick(View view, SceneFindSingleInfo sceneFindSingleInfo);
+
+        void onLikeClick(View view, SceneFindSingleInfo sceneFindSingleInfo);
+
+        void onAvatarClick(View view, SceneFindSingleInfo sceneFindSingleInfo);
+
+        void onUserNameClick(View view, SceneFindSingleInfo sceneFindSingleInfo);
     }
 
-    public interface OnSceneFindViewLikeClickListener {
-        void onSceneFindViewLikeClick(View view);
+    /**
+     * OnSceneFindItemClickListener的Setter
+     */
+    public void setOnSceneFindItemClickListener(OnSceneFindItemClickListener l) {
+        this.onSceneFindItemClickListener = l;
     }
 
-    public interface OnSceneFindViewUserClickListener {
-        void onSceneFindViewUserClick(View view);
-    }
-
-    public SceneFindAdapter(List<SceneFindInfo> datas) {
+    public SceneFindAdapter(List<SceneFindSingleInfo> datas) {
         this.datas = datas;
     }
 
@@ -61,13 +66,22 @@ public class SceneFindAdapter extends RecyclerView.Adapter<SceneFindAdapter.View
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        SceneFindInfo sceneFindInfo = datas.get(position);
+        SceneFindSingleInfo sceneFindSingleInfo = datas.get(position);
+        UserInfo userInfo = sceneFindSingleInfo.getEvaluateInfo().getUserInfo();
 
-        holder.mTvTitle.setText(sceneFindInfo.getTitle());
-        holder.mTvDate.setText(DateUtils.formatDate(sceneFindInfo.getDate(), DateUtils.FORMAT_YMD_2));
-        // TODO: 2016/7/10 加入头像图片与Tag的RecyclerView的代码
+        holder.mTvTitle.setText(sceneFindSingleInfo.getTitle());
+        holder.mTvDate.setText(DateUtils.formatDate(sceneFindSingleInfo.getDate(), DateUtils.FORMAT_YMD_2));
+        holder.mTvUserName.setText(userInfo.getUserName());
 
-        bindClickListener(holder, position);
+        Glide.with(holder.itemView.getContext())
+                .load(userInfo.getAvatarUrl())
+                .placeholder(R.drawable.placeholder)
+                .dontAnimate()
+                .into(holder.mIvAvatar);
+
+        // TODO: 2016/7/10 加入Tag的RecyclerView的代码
+
+        bindClickListener(holder, sceneFindSingleInfo);
     }
 
 
@@ -76,26 +90,34 @@ public class SceneFindAdapter extends RecyclerView.Adapter<SceneFindAdapter.View
      *
      * @param position
      */
-    private void bindClickListener(ViewHolder holder, final int position) {
+    private void bindClickListener(ViewHolder holder, final SceneFindSingleInfo position) {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (onSceneFindViewClickListener != null)
-                    onSceneFindViewClickListener.onSceneFindViewClick(v, position);
+                if (onSceneFindItemClickListener != null)
+                    onSceneFindItemClickListener.onSceneFindItemClick(v, position);
             }
         });
         holder.mClickLove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (onSceneFindViewLikeClickListener != null)
-                    onSceneFindViewLikeClickListener.onSceneFindViewLikeClick(v);
+                if (onSceneFindItemClickListener != null)
+                    onSceneFindItemClickListener.onLikeClick(v, position);
             }
         });
         holder.mClickUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (onSceneFindViewUserClickListener != null)
-                    onSceneFindViewUserClickListener.onSceneFindViewUserClick(v);
+                if (onSceneFindItemClickListener != null)
+                    onSceneFindItemClickListener.onUserNameClick(v, position);
+            }
+        });
+        holder.mIvAvatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onSceneFindItemClickListener != null)
+                    onSceneFindItemClickListener.onAvatarClick(v, position);
+
             }
         });
     }
@@ -111,6 +133,8 @@ public class SceneFindAdapter extends RecyclerView.Adapter<SceneFindAdapter.View
         TextView mTvTitle;
         @BindView(R.id.tv_scene_find_single_date)
         TextView mTvDate;
+        @BindView(R.id.tv_scene_find_single_user_name)
+        TextView mTvUserName;
         @BindView(R.id.iv_scene_find_single_user_avatar)
         ImageView mIvAvatar;
         @BindView(R.id.rv_item_scene_find_single_tag)

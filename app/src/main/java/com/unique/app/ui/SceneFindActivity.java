@@ -5,6 +5,7 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.Switch;
@@ -16,7 +17,8 @@ import com.unique.app.ui.frag.SceneFindFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SceneFindActivity extends BaseActivity implements CompoundButton.OnCheckedChangeListener {
+public class SceneFindActivity extends BaseActivity implements
+        CompoundButton.OnCheckedChangeListener, Toolbar.OnMenuItemClickListener {
 
     @BindView(R.id.toolbar)
     public Toolbar mToolbar;
@@ -36,15 +38,12 @@ public class SceneFindActivity extends BaseActivity implements CompoundButton.On
         initToolbar();
         initSwitch();
 
+        //选取左边的Fragment
+        setSceneFindSingleFragment();
     }
 
     private void initSwitch() {
         mSwitchSceneFind.setOnCheckedChangeListener(this);
-    }
-
-    private void initRecyclerView() {
-
-
     }
 
     /**
@@ -52,22 +51,41 @@ public class SceneFindActivity extends BaseActivity implements CompoundButton.On
      */
     private void initToolbar() {
         mToolbar.setTitle("场景寻人");
+        mToolbar.inflateMenu(R.menu.menu_toolbar_scene);
+        mToolbar.setOnMenuItemClickListener(this);
     }
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if (!isChecked) {
             //左边
-            FragmentManager fragmentManager = getFragmentManager();
-            FragmentTransaction ft = fragmentManager.beginTransaction();
-            ft.replace(R.id.container_scene_find, new SceneFindFragment());
-            ft.commit();
+            setSceneFindSingleFragment();
         } else {
             //右边
-            FragmentManager fragmentManager = getFragmentManager();
-            FragmentTransaction ft = fragmentManager.beginTransaction();
-            ft.replace(R.id.container_scene_find, new MultiSceneFindFragment());
-            ft.commit();
+            setSceneFindMultiFragment();
         }
+    }
+
+    private void setSceneFindMultiFragment() {
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.replace(R.id.container_scene_find, new MultiSceneFindFragment());
+        ft.commit();
+    }
+
+    private void setSceneFindSingleFragment() {
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.replace(R.id.container_scene_find, new SceneFindFragment());
+        ft.commit();
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_tb_scene_find_add:
+                NewSceneFindActivity.start(this);
+        }
+        return false;
     }
 }

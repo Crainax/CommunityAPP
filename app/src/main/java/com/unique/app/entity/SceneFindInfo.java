@@ -15,13 +15,12 @@ import java.util.Date;
  * @version 1.0 <br/>
  * @since 2016/7/9 <br/>
  */
-public class SceneFindInfo implements Parcelable{
+public abstract class SceneFindInfo implements Parcelable{
 
     private String title;
     private boolean isLike;
     private TagInfo[] tagInfos;
     private Date date;
-    private EvaluateInfo evaluateInfo;
 
     public String getTitle() {
         return title;
@@ -55,14 +54,6 @@ public class SceneFindInfo implements Parcelable{
         this.date = date;
     }
 
-    public EvaluateInfo getEvaluateInfo() {
-        return evaluateInfo;
-    }
-
-    public void setEvaluateInfo(EvaluateInfo evaluateInfo) {
-        this.evaluateInfo = evaluateInfo;
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -74,7 +65,6 @@ public class SceneFindInfo implements Parcelable{
         dest.writeByte(this.isLike ? (byte) 1 : (byte) 0);
         dest.writeTypedArray(this.tagInfos, flags);
         dest.writeLong(this.date != null ? this.date.getTime() : -1);
-        dest.writeParcelable(this.evaluateInfo, flags);
     }
 
     public SceneFindInfo() {
@@ -86,18 +76,6 @@ public class SceneFindInfo implements Parcelable{
         this.tagInfos = in.createTypedArray(TagInfo.CREATOR);
         long tmpDate = in.readLong();
         this.date = tmpDate == -1 ? null : new Date(tmpDate);
-        this.evaluateInfo = in.readParcelable(EvaluateInfo.class.getClassLoader());
     }
 
-    public static final Creator<SceneFindInfo> CREATOR = new Creator<SceneFindInfo>() {
-        @Override
-        public SceneFindInfo createFromParcel(Parcel source) {
-            return new SceneFindInfo(source);
-        }
-
-        @Override
-        public SceneFindInfo[] newArray(int size) {
-            return new SceneFindInfo[size];
-        }
-    };
 }

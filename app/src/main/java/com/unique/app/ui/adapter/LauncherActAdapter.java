@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.unique.app.R;
-import com.unique.app.entity.SceneFindInfo;
+import com.unique.app.entity.SceneFindSingleInfo;
 import com.unique.app.util.DateUtils;
 
 import java.util.List;
@@ -27,14 +27,14 @@ import butterknife.ButterKnife;
  */
 public class LauncherActAdapter extends RecyclerView.Adapter<LauncherActAdapter.ViewHolder> {
 
-    private List<SceneFindInfo> datas;
+    private List<SceneFindSingleInfo> datas;
 
     private OnLauncherActItemClickListener onLauncherActItemClickListener;
 
     public interface OnLauncherActItemClickListener {
-        void onLauncherActItemClick(View view, SceneFindInfo sceneFindInfo);
+        void onLauncherActItemClick(View view, SceneFindSingleInfo sceneFindSingleInfo);
 
-        void onEvaluateButtonClick(View view, SceneFindInfo sceneFindInfo);
+        void onEvaluateButtonClick(View view, SceneFindSingleInfo sceneFindSingleInfo);
     }
 
     /**
@@ -44,7 +44,7 @@ public class LauncherActAdapter extends RecyclerView.Adapter<LauncherActAdapter.
         this.onLauncherActItemClickListener = l;
     }
 
-    public LauncherActAdapter(List<SceneFindInfo> datas) {
+    public LauncherActAdapter(List<SceneFindSingleInfo> datas) {
         this.datas = datas;
     }
 
@@ -58,12 +58,12 @@ public class LauncherActAdapter extends RecyclerView.Adapter<LauncherActAdapter.
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        SceneFindInfo sceneFindInfo = datas.get(position);
+        SceneFindSingleInfo sceneFindSingleInfo = datas.get(position);
 
-        holder.mTvTitle.setText(sceneFindInfo.getTitle());
-        holder.mTvDate.setText(DateUtils.formatDate(sceneFindInfo.getDate(), DateUtils.FORMAT_YMD_2));
+        holder.mTvTitle.setText(sceneFindSingleInfo.getTitle());
+        holder.mTvDate.setText(DateUtils.formatDate(sceneFindSingleInfo.getDate(), DateUtils.FORMAT_YMD_2));
 
-        if (sceneFindInfo.getEvaluateInfo().isEvaluate()) {
+        if (sceneFindSingleInfo.getEvaluateInfo().isEvaluate()) {
             holder.mTvClickEvaluate.setText("已评价");
         } else {
             holder.mTvClickEvaluate.setText("未评价");
@@ -71,7 +71,7 @@ public class LauncherActAdapter extends RecyclerView.Adapter<LauncherActAdapter.
 
         // TODO: 2016/7/12 加入Tag的RecyclerView代码
 
-        bindClickListener(holder, sceneFindInfo);
+        bindClickListener(holder, sceneFindSingleInfo);
     }
 
 
@@ -80,7 +80,7 @@ public class LauncherActAdapter extends RecyclerView.Adapter<LauncherActAdapter.
      *
      * @param position
      */
-    private void bindClickListener(ViewHolder holder, final SceneFindInfo position) {
+    private void bindClickListener(ViewHolder holder, final SceneFindSingleInfo position) {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

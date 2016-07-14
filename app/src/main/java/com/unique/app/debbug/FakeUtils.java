@@ -1,7 +1,10 @@
 package com.unique.app.debbug;
 
+import android.support.annotation.NonNull;
+
 import com.unique.app.entity.EvaluateInfo;
-import com.unique.app.entity.SceneFindInfo;
+import com.unique.app.entity.SceneFindMultiInfo;
+import com.unique.app.entity.SceneFindSingleInfo;
 import com.unique.app.entity.UserInfo;
 
 import java.util.ArrayList;
@@ -58,29 +61,81 @@ public class FakeUtils {
 
 
     @FakeContent
-    public static List<SceneFindInfo> fakeSceneFindInfo(int num) {
+    public static List<SceneFindSingleInfo> fakeSceneFindSingleInfo(int num) {
 
-        List<SceneFindInfo> list = new ArrayList<>();
+        List<SceneFindSingleInfo> list = new ArrayList<>();
 
         for (int i = 0; i < num; i++) {
-            Random random = new Random();
-            EvaluateInfo evaluateInfo = new EvaluateInfo();
-            evaluateInfo.setRating(random.nextFloat() * 5);
-            evaluateInfo.setEvaluate(random.nextBoolean());
-            evaluateInfo.setUserInfo(fakeUserInfo());
-            SceneFindInfo sceneFindInfo = new SceneFindInfo();
-            sceneFindInfo.setDate(new Date(random.nextLong()));
-            sceneFindInfo.setEvaluateInfo(evaluateInfo);
-            sceneFindInfo.setLike(random.nextBoolean());
-            sceneFindInfo.setTagInfos(null);
-            sceneFindInfo.setTitle("标题" + random.nextInt(100));
-            list.add(sceneFindInfo);
+            SceneFindSingleInfo sceneFindSingleInfo = fakeSceneFindSingleInfo();
+            list.add(sceneFindSingleInfo);
         }
 
         return list;
     }
 
+    @NonNull
+    private static SceneFindSingleInfo fakeSceneFindSingleInfo() {
+        Random random = new Random();
+        EvaluateInfo evaluateInfo = fakeEvaluateInfo();
+        SceneFindSingleInfo sceneFindSingleInfo = new SceneFindSingleInfo();
+        sceneFindSingleInfo.setDate(new Date(random.nextLong()));
+        sceneFindSingleInfo.setEvaluateInfo(evaluateInfo);
+        sceneFindSingleInfo.setLike(random.nextBoolean());
+        sceneFindSingleInfo.setTagInfos(null);
+        sceneFindSingleInfo.setTitle("标题" + random.nextInt(100));
+        return sceneFindSingleInfo;
+    }
+
+
+    @FakeContent
+    public static List<SceneFindMultiInfo> fakeSceneFindMultiInfo(int num) {
+
+        List<SceneFindMultiInfo> list = new ArrayList<>();
+
+        for (int i = 0; i < num; i++) {
+            SceneFindMultiInfo sceneFindMultiInfo = fakeSceneFindInfo();
+            list.add(sceneFindMultiInfo);
+        }
+
+        return list;
+    }
+
+    @NonNull
+    private static SceneFindMultiInfo fakeSceneFindInfo() {
+        Random random = new Random();
+        SceneFindMultiInfo sceneFindMultiInfo = new SceneFindMultiInfo();
+        sceneFindMultiInfo.setDate(new Date(random.nextLong()));
+        int total = random.nextInt(10) + 1;
+        int current = random.nextInt(total);
+        List<EvaluateInfo> infos = fakeEvaluateInfo(current);
+        sceneFindMultiInfo.setCurrentPeopleCount(current);
+        sceneFindMultiInfo.setTotalPeopleCount(total);
+        sceneFindMultiInfo.setEvaluateInfo(infos);
+        sceneFindMultiInfo.setLike(random.nextBoolean());
+        sceneFindMultiInfo.setTagInfos(null);
+        sceneFindMultiInfo.setTitle("标题" + random.nextInt(100));
+        return sceneFindMultiInfo;
+    }
+
+    @NonNull
+    private static EvaluateInfo fakeEvaluateInfo() {
+        Random random = new Random();
+        EvaluateInfo evaluateInfo = new EvaluateInfo();
+        evaluateInfo.setRating(random.nextFloat() * 5);
+        evaluateInfo.setEvaluate(random.nextBoolean());
+        evaluateInfo.setUserInfo(fakeUserInfo());
+        return evaluateInfo;
+    }
+
     public static List<EvaluateInfo> fakeEvaluateInfo(int num) {
-        return null;
+        List<EvaluateInfo> list = new ArrayList<>();
+
+        for (int i = 0; i < num; i++) {
+            EvaluateInfo evaluateInfo = fakeEvaluateInfo();
+            list.add(evaluateInfo);
+        }
+
+        return list;
+
     }
 }

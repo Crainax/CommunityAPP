@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/tb_scene_find_add"
+        android:id="@+id/menu_tb_scene_find_add"
         android:icon="@android:drawable/ic_input_add"
         android:title="场景寻人"
         app:showAsAction="always" />

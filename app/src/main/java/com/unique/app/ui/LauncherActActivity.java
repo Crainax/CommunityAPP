@@ -9,7 +9,7 @@ import android.view.View;
 
 import com.unique.app.R;
 import com.unique.app.debbug.FakeUtils;
-import com.unique.app.entity.SceneFindInfo;
+import com.unique.app.entity.SceneFindSingleInfo;
 import com.unique.app.ui.adapter.LauncherActAdapter;
 import com.unique.app.ui.adapter.SpaceItemDecoration;
 import com.unique.app.ui.view.CenterToolbar;
@@ -49,7 +49,7 @@ public class LauncherActActivity extends BaseActivity implements
 
     private void initRecyclerView() {
 
-        mLauncherActAdapter = new LauncherActAdapter(FakeUtils.fakeSceneFindInfo(10));
+        mLauncherActAdapter = new LauncherActAdapter(FakeUtils.fakeSceneFindSingleInfo(10));
         mRvLaunchAct.setAdapter(mLauncherActAdapter);
         mRvLaunchAct.setHasFixedSize(true);
         mRvLaunchAct.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -70,13 +70,13 @@ public class LauncherActActivity extends BaseActivity implements
     }
 
     @Override
-    public void onLauncherActItemClick(View view, SceneFindInfo sceneFindInfo) {
+    public void onLauncherActItemClick(View view, SceneFindSingleInfo sceneFindSingleInfo) {
 
     }
 
     @Override
-    public void onEvaluateButtonClick(View view, SceneFindInfo sceneFindInfo) {
-        EvaluateActivity.startSingleEvaluate(this, sceneFindInfo.getEvaluateInfo());
+    public void onEvaluateButtonClick(View view, SceneFindSingleInfo sceneFindSingleInfo) {
+        EvaluateActivity.startSingleEvaluate(this, sceneFindSingleInfo.getEvaluateInfo());
     }
 
 

@@ -1,4 +1,5 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">社交APP</string>
     <string name="act_user_info_tel">联系方式:<xliff:g id="tel">%1$s</xliff:g></string>
+    <string name="scene_find_multi_count">现有人数:<xliff:g id="current">%1$s</xliff:g>/<xliff:g id="total">%2$s</xliff:g></string>
 </resources>
