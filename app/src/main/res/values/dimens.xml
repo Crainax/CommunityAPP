@@ -5,6 +5,8 @@
     <dimen name="iv_scene_find_single_user_avatar">48dp</dimen>
     <dimen name="iv_me_avatar">96dp</dimen>
     <dimen name="rv_my_follow_item_distance">10dp</dimen>
+    <dimen name="padding_5dp">10dp</dimen>
     <dimen name="iv_my_follow_avatar">96dp</dimen>
     <dimen name="iv_user_info_avatar">64dp</dimen>
+    <dimen name="rv_evaluate_item_distance">10dp</dimen>
 </resources>

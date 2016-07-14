@@ -9,15 +9,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.unique.app.R;
-import com.unique.app.debbug.FakeContent;
+import com.unique.app.debbug.FakeUtils;
 import com.unique.app.entity.UserInfo;
 import com.unique.app.ui.adapter.MyFollowAdapter;
 import com.unique.app.ui.adapter.SpaceItemDecoration;
 import com.unique.app.ui.view.CenterToolbar;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -55,7 +51,7 @@ public class MyFollowActivity extends BaseActivity implements MyFollowAdapter.On
 
     private void initRecyclerView() {
 
-        mMyFollowAdapter = new MyFollowAdapter(fakeContent());
+        mMyFollowAdapter = new MyFollowAdapter(FakeUtils.fakeUserInfo(10));
         mRvMyFollow.setAdapter(mMyFollowAdapter);
         mRvMyFollow.setHasFixedSize(true);
         mRvMyFollow.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -76,33 +72,6 @@ public class MyFollowActivity extends BaseActivity implements MyFollowAdapter.On
 
     }
 
-    @FakeContent
-    private List<UserInfo> fakeContent() {
-
-        List<UserInfo> list = new ArrayList<>();
-
-        for (int i = 0; i < 10; i++) {
-            Random random = new Random();
-            UserInfo userInfo = new UserInfo();
-            userInfo.setUserName("用户" + random.nextInt(100000));
-            userInfo.setLaunchActCount(random.nextInt(10));
-            userInfo.setPartakeInNum(random.nextInt(20));
-            userInfo.setFriendlyNum(random.nextFloat() * 5);
-            userInfo.setPrivate(random.nextBoolean());
-            userInfo.setTel(random.nextLong() + "");
-            switch (random.nextInt(2)) {
-                case 0:
-                    userInfo.setAvatarUrl("http://avatar.csdn.net/1/D/D/1_xipiaoyouzi.jpg");
-                    break;
-                case 1:
-                    userInfo.setAvatarUrl("http://avatar.csdn.net/A/6/6/1_xuewater.jpg");
-                    break;
-            }
-            list.add(userInfo);
-        }
-
-        return list;
-    }
 
     @Override
     public void onMyFollowUserNameClick(View view, UserInfo userInfo) {
@@ -114,7 +83,7 @@ public class MyFollowActivity extends BaseActivity implements MyFollowAdapter.On
 
     @Override
     public void onMyFollowAvatarClick(View view, UserInfo userInfo) {
-        // TODO: 2016/7/12 放大图片
+        PictureActivity.start(this, userInfo.getAvatarUrl(), view);
     }
 
     @Override

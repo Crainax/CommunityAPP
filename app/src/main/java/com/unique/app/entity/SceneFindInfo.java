@@ -1,5 +1,8 @@
 package com.unique.app.entity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Date;
 
 /**
@@ -12,13 +15,13 @@ import java.util.Date;
  * @version 1.0 <br/>
  * @since 2016/7/9 <br/>
  */
-public class SceneFindInfo {
+public class SceneFindInfo implements Parcelable{
 
     private String title;
     private boolean isLike;
     private TagInfo[] tagInfos;
     private Date date;
-    private UserInfo user;
+    private EvaluateInfo evaluateInfo;
 
     public String getTitle() {
         return title;
@@ -52,11 +55,49 @@ public class SceneFindInfo {
         this.date = date;
     }
 
-    public UserInfo getUser() {
-        return user;
+    public EvaluateInfo getEvaluateInfo() {
+        return evaluateInfo;
     }
 
-    public void setUser(UserInfo user) {
-        this.user = user;
+    public void setEvaluateInfo(EvaluateInfo evaluateInfo) {
+        this.evaluateInfo = evaluateInfo;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.title);
+        dest.writeByte(this.isLike ? (byte) 1 : (byte) 0);
+        dest.writeTypedArray(this.tagInfos, flags);
+        dest.writeLong(this.date != null ? this.date.getTime() : -1);
+        dest.writeParcelable(this.evaluateInfo, flags);
+    }
+
+    public SceneFindInfo() {
+    }
+
+    protected SceneFindInfo(Parcel in) {
+        this.title = in.readString();
+        this.isLike = in.readByte() != 0;
+        this.tagInfos = in.createTypedArray(TagInfo.CREATOR);
+        long tmpDate = in.readLong();
+        this.date = tmpDate == -1 ? null : new Date(tmpDate);
+        this.evaluateInfo = in.readParcelable(EvaluateInfo.class.getClassLoader());
+    }
+
+    public static final Creator<SceneFindInfo> CREATOR = new Creator<SceneFindInfo>() {
+        @Override
+        public SceneFindInfo createFromParcel(Parcel source) {
+            return new SceneFindInfo(source);
+        }
+
+        @Override
+        public SceneFindInfo[] newArray(int size) {
+            return new SceneFindInfo[size];
+        }
+    };
 }

@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView
 
     @Override
     public void goToMainActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, SceneFindActivity.class);
         startActivity(intent);
         finish();
     }

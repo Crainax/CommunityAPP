@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.unique.app.R;
 
@@ -20,7 +21,7 @@ import com.unique.app.R;
  * @version 1.0 <br/>
  * @since 2016/7/8 <br/>
  */
-public class SceneFindFragment extends Fragment {
+public class MultiSceneFindFragment extends Fragment {
 
     private RecyclerView mRvData;
 
@@ -28,18 +29,15 @@ public class SceneFindFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        mRvData = new RecyclerView(container.getContext());
+//        mRvData = new RecyclerView(container.getContext());
+        TextView textView = new TextView(container.getContext());
+        textView.setText("xixixixixiix");
 
         int spacingInPixel = getResources().getDimensionPixelSize(R.dimen.padding_5dp);
-        mRvData.setPadding(0, spacingInPixel, 0, spacingInPixel);
+        textView.setPadding(0, spacingInPixel, 0, spacingInPixel);
 
-        return mRvData;
+        return textView;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
-
-    }
 }

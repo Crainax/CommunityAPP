@@ -1,5 +1,6 @@
 package com.unique.app.ui;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -36,6 +37,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class UserInfoActivity extends BaseActivity implements CenterToolbar.OnToolbarBackClickListener {
 
     private static final String TAG = "Crainax";
+
     public static final String INTENT_DATA_IS_FOLLOW = "is_follow";
     public static final String INTENT_DATA_USER = "user";
 
@@ -61,6 +63,12 @@ public class UserInfoActivity extends BaseActivity implements CenterToolbar.OnTo
     RecyclerView rvUserInfoTag;
     @BindView(R.id.toolbar)
     CenterToolbar mToolbar;
+
+    public static void start(Context context, UserInfo userInfo) {
+        Intent starter = new Intent(context, UserInfoActivity.class);
+        starter.putExtra(INTENT_DATA_USER, userInfo);
+        context.startActivity(starter);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -100,6 +108,8 @@ public class UserInfoActivity extends BaseActivity implements CenterToolbar.OnTo
 
     private void initView(Intent intent) {
 
+        // TODO: 2016/7/13 ISFOLLOW从网上获取吧,不通过Intent发过来了
+
         //关注按钮
         if (intent.getBooleanExtra(UserInfoActivity.INTENT_DATA_IS_FOLLOW, false)) {
             clickUserInfoFollow.setText("已关注");
@@ -116,7 +126,7 @@ public class UserInfoActivity extends BaseActivity implements CenterToolbar.OnTo
         tvUserInfoFriendlyNum.setText(format.format(userInfo.getFriendlyNum()));
         tvUserInfoPartakeInNum.setText(String.valueOf(userInfo.getPartakeInNum()));
 
-        Log.i(TAG, "fakeContent: "+userInfo);
+        Log.i(TAG, "fakeContent: " + userInfo);
         //联系方式
         if (userInfo.isPrivate())
             tvUserInfoTel.setText(getResources().getString(R.string.act_user_info_tel, "未公开"));
@@ -132,7 +142,7 @@ public class UserInfoActivity extends BaseActivity implements CenterToolbar.OnTo
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_user_info_avatar:
-                // TODO: 2016/7/12 放大头像看
+                PictureActivity.start(this, userInfo.getAvatarUrl(), view);
                 break;
             case R.id.click_user_info_follow:
 

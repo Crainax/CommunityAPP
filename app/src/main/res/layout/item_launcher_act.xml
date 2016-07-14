@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_launch_act_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="一起去看惊天魔盗团"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_launch_act_evaluate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:padding="5dp"
+                android:text="未评价"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_launch_act_tag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp" />
+
+        <TextView
+            android:id="@+id/tv_launch_act_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="2016年8月8日"
+            android:textColor="@android:color/black"
+            android:textSize="15sp" />
+
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>
