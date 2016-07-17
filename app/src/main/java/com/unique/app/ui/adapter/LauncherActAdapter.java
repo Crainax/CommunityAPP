@@ -61,7 +61,7 @@ public class LauncherActAdapter extends RecyclerView.Adapter<LauncherActAdapter.
         SceneFindSingleInfo sceneFindSingleInfo = datas.get(position);
 
         holder.mTvTitle.setText(sceneFindSingleInfo.getTitle());
-        holder.mTvDate.setText(DateUtils.formatDate(sceneFindSingleInfo.getDate(), DateUtils.FORMAT_YMD_2));
+        holder.mTvDate.setText(DateUtils.formatDate(sceneFindSingleInfo.getTime(), DateUtils.FORMAT_YMD_2));
 
         if (sceneFindSingleInfo.getEvaluateInfo().isEvaluate()) {
             holder.mTvClickEvaluate.setText("已评价");

@@ -78,7 +78,7 @@ public class FakeUtils {
         Random random = new Random();
         EvaluateInfo evaluateInfo = fakeEvaluateInfo();
         SceneFindSingleInfo sceneFindSingleInfo = new SceneFindSingleInfo();
-        sceneFindSingleInfo.setDate(new Date(random.nextLong()));
+        sceneFindSingleInfo.setTime(new Date(random.nextLong()));
         sceneFindSingleInfo.setEvaluateInfo(evaluateInfo);
         sceneFindSingleInfo.setLike(random.nextBoolean());
         sceneFindSingleInfo.setTagInfos(null);
@@ -104,7 +104,7 @@ public class FakeUtils {
     private static SceneFindMultiInfo fakeSceneFindInfo() {
         Random random = new Random();
         SceneFindMultiInfo sceneFindMultiInfo = new SceneFindMultiInfo();
-        sceneFindMultiInfo.setDate(new Date(random.nextLong()));
+        sceneFindMultiInfo.setTime(new Date(random.nextLong()));
         int total = random.nextInt(10) + 1;
         int current = random.nextInt(total);
         List<EvaluateInfo> infos = fakeEvaluateInfo(current);

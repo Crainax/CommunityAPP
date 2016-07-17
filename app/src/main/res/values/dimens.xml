@@ -9,4 +9,5 @@
     <dimen name="iv_my_follow_avatar">96dp</dimen>
     <dimen name="iv_user_info_avatar">64dp</dimen>
     <dimen name="rv_evaluate_item_distance">10dp</dimen>
+    <dimen name="new_image_dimen">128dp</dimen>
 </resources>

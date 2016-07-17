@@ -19,6 +19,7 @@ public class SceneFindMultiInfo extends SceneFindInfo {
     private List<EvaluateInfo> evaluateInfo;
     private int currentPeopleCount;
     private int totalPeopleCount;
+    private List<UserInfo> userInfos;
 
     public List<EvaluateInfo> getEvaluateInfo() {
         return evaluateInfo;
@@ -44,6 +45,14 @@ public class SceneFindMultiInfo extends SceneFindInfo {
         this.totalPeopleCount = totalPeopleCount;
     }
 
+    public List<UserInfo> getUserInfos() {
+        return userInfos;
+    }
+
+    public void setUserInfos(List<UserInfo> userInfos) {
+        this.userInfos = userInfos;
+    }
+
 
     @Override
     public int describeContents() {
@@ -56,6 +65,7 @@ public class SceneFindMultiInfo extends SceneFindInfo {
         dest.writeTypedList(this.evaluateInfo);
         dest.writeInt(this.currentPeopleCount);
         dest.writeInt(this.totalPeopleCount);
+        dest.writeTypedList(this.userInfos);
     }
 
     public SceneFindMultiInfo() {
@@ -66,6 +76,7 @@ public class SceneFindMultiInfo extends SceneFindInfo {
         this.evaluateInfo = in.createTypedArrayList(EvaluateInfo.CREATOR);
         this.currentPeopleCount = in.readInt();
         this.totalPeopleCount = in.readInt();
+        this.userInfos = in.createTypedArrayList(UserInfo.CREATOR);
     }
 
     public static final Creator<SceneFindMultiInfo> CREATOR = new Creator<SceneFindMultiInfo>() {
@@ -79,4 +90,5 @@ public class SceneFindMultiInfo extends SceneFindInfo {
             return new SceneFindMultiInfo[size];
         }
     };
+
 }

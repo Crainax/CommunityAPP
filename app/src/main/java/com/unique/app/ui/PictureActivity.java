@@ -28,18 +28,34 @@ import uk.co.senab.photoview.PhotoViewAttacher;
  */
 public class PictureActivity extends BaseActivity {
 
-    public static final String EXTRA_IMAGE_URL = "image_url";
+    public static final String EXTRA_IMAGE_BYTES = "image_url";
+    public static final String EXTRA_IMAGE_URL = "image_bytes";
     public static final String TRANSIT_PIC = "picture";
+    public static final String META_AVFILE_NAME = "url";
 
     @BindView(R.id.iv_photo)
     ImageView mImageView;
 
-    PhotoViewAttacher mPhotoViewAttacher;
-    String mImageUrl;
+    private PhotoViewAttacher mPhotoViewAttacher;
+    private String mImageUrl;
+    private byte[] mImageBytes;
 
     public static void start(Activity activity, String url, View transitionView) {
         Intent intent = new Intent(activity, PictureActivity.class);
         intent.putExtra(PictureActivity.EXTRA_IMAGE_URL, url);
+        startThis(activity, transitionView, intent);
+    }
+
+    public static void start(Activity activity, byte[] bytes, View transitionView) {
+        Intent intent = new Intent(activity, PictureActivity.class);
+        intent.putExtra(PictureActivity.EXTRA_IMAGE_BYTES, bytes);
+        startThis(activity, transitionView, intent);
+    }
+
+    /**
+     * 抽离方法
+     */
+    private static void startThis(Activity activity, View transitionView, Intent intent) {
         ActivityOptionsCompat optionsCompat
                 = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 activity, transitionView, PictureActivity.TRANSIT_PIC);
@@ -54,6 +70,7 @@ public class PictureActivity extends BaseActivity {
 
     private void parseIntent() {
         mImageUrl = getIntent().getStringExtra(EXTRA_IMAGE_URL);
+        mImageBytes = getIntent().getByteArrayExtra(EXTRA_IMAGE_BYTES);
     }
 
     @Override
@@ -64,10 +81,13 @@ public class PictureActivity extends BaseActivity {
         parseIntent();
         // init image view
         ViewCompat.setTransitionName(mImageView, TRANSIT_PIC);
-        Glide.with(this).load(mImageUrl).dontAnimate().into(mImageView);
+        if (mImageUrl != null) {
+            Glide.with(this).load(mImageUrl).dontAnimate().into(mImageView);
+        } else if (mImageBytes != null) {
+            Glide.with(this).load(mImageBytes).dontAnimate().into(mImageView);
+        }
         setupPhotoAttacher();
     }
-
 
     private void setupPhotoAttacher() {
         mPhotoViewAttacher = new PhotoViewAttacher(mImageView);

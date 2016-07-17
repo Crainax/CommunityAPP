@@ -2,6 +2,7 @@ package com.unique.app;
 
 import android.app.Application;
 
+import com.avos.avoscloud.AVOSCloud;
 import com.orhanobut.logger.Logger;
 
 /**
@@ -20,5 +21,6 @@ public class APP extends Application {
     public void onCreate() {
         super.onCreate();
         Logger.init("Crainax");
+        AVOSCloud.initialize(this, "4fhb57WF0zNslzmXLNhUPT1D-gzGzoHsz", "CjOGkHBJeGlDzEzeY9MRb4so");
     }
 }

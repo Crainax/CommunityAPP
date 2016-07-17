@@ -5,7 +5,14 @@
     <attr name="titleText" format="string" />
     <attr name="iconDrawable" format="reference" />
 
+    <!--MeActivity下的自定义控件的属性-->
     <declare-styleable name="MeItemView">
+        <attr name="titleText" />
+        <attr name="iconDrawable" />
+    </declare-styleable>
+
+    <!--NewSceneActivity下的自定义控件的属性-->
+    <declare-styleable name="NewSceneItemView">
         <attr name="titleText" />
         <attr name="iconDrawable" />
     </declare-styleable>

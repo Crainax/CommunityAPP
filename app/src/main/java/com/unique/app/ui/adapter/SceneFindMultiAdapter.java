@@ -64,7 +64,7 @@ public class SceneFindMultiAdapter extends RecyclerView.Adapter<SceneFindMultiAd
         SceneFindMultiInfo sceneFindMultiInfo = datas.get(position);
 
         holder.mTvTitle.setText(sceneFindMultiInfo.getTitle());
-        holder.mTvDate.setText(DateUtils.formatDate(sceneFindMultiInfo.getDate(), DateUtils.FORMAT_YMD_2));
+        holder.mTvDate.setText(DateUtils.formatDate(sceneFindMultiInfo.getTime(), DateUtils.FORMAT_YMD_2));
 
         String countStr = holder.itemView.getResources().getString(R.string.scene_find_multi_count
                 , sceneFindMultiInfo.getCurrentPeopleCount() + ""

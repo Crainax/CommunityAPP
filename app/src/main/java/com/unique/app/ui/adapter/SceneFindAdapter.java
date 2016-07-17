@@ -70,7 +70,7 @@ public class SceneFindAdapter extends RecyclerView.Adapter<SceneFindAdapter.View
         UserInfo userInfo = sceneFindSingleInfo.getEvaluateInfo().getUserInfo();
 
         holder.mTvTitle.setText(sceneFindSingleInfo.getTitle());
-        holder.mTvDate.setText(DateUtils.formatDate(sceneFindSingleInfo.getDate(), DateUtils.FORMAT_YMD_2));
+        holder.mTvDate.setText(DateUtils.formatDate(sceneFindSingleInfo.getTime(), DateUtils.FORMAT_YMD_2));
         holder.mTvUserName.setText(userInfo.getUserName());
 
         Glide.with(holder.itemView.getContext())

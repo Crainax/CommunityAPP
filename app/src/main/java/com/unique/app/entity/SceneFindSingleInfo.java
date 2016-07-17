@@ -15,6 +15,15 @@ import android.os.Parcel;
 public class SceneFindSingleInfo extends SceneFindInfo {
 
     private EvaluateInfo evaluateInfo;
+    private UserInfo userInfo;
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
+    }
 
     public EvaluateInfo getEvaluateInfo() {
         return evaluateInfo;
@@ -23,6 +32,7 @@ public class SceneFindSingleInfo extends SceneFindInfo {
     public void setEvaluateInfo(EvaluateInfo evaluateInfo) {
         this.evaluateInfo = evaluateInfo;
     }
+
 
     @Override
     public int describeContents() {
@@ -33,6 +43,7 @@ public class SceneFindSingleInfo extends SceneFindInfo {
     public void writeToParcel(Parcel dest, int flags) {
         super.writeToParcel(dest, flags);
         dest.writeParcelable(this.evaluateInfo, flags);
+        dest.writeParcelable(this.userInfo, flags);
     }
 
     public SceneFindSingleInfo() {
@@ -41,6 +52,7 @@ public class SceneFindSingleInfo extends SceneFindInfo {
     protected SceneFindSingleInfo(Parcel in) {
         super(in);
         this.evaluateInfo = in.readParcelable(EvaluateInfo.class.getClassLoader());
+        this.userInfo = in.readParcelable(UserInfo.class.getClassLoader());
     }
 
     public static final Creator<SceneFindSingleInfo> CREATOR = new Creator<SceneFindSingleInfo>() {
