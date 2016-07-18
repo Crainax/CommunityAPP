@@ -1,11 +1,13 @@
 package com.unique.app.ui.adapter;
 
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.unique.app.Constants;
 import com.unique.app.R;
 import com.unique.app.entity.SceneFindMultiInfo;
 import com.unique.app.util.DateUtils;
@@ -73,6 +75,10 @@ public class SceneFindMultiAdapter extends RecyclerView.Adapter<SceneFindMultiAd
         holder.mTvPeopleCount.setText(countStr);
 
         // TODO: 2016/7/10 加入Tag的RecyclerView的代码
+        RecyclerView mRvTag = holder.mRvTag;
+        TagAdapter adapter = new TagAdapter(sceneFindMultiInfo.getTags(), Constants.MAX_COUNT_TAG);
+        mRvTag.setLayoutManager(new LinearLayoutManager(holder.itemView.getContext(), LinearLayoutManager.HORIZONTAL, false));
+        mRvTag.setAdapter(adapter);
 
         bindClickListener(holder, sceneFindMultiInfo);
     }

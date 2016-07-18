@@ -2,6 +2,7 @@ package com.unique.app.debbug;
 
 import android.support.annotation.NonNull;
 
+import com.unique.app.Constants;
 import com.unique.app.entity.EvaluateInfo;
 import com.unique.app.entity.SceneFindMultiInfo;
 import com.unique.app.entity.SceneFindSingleInfo;
@@ -81,9 +82,21 @@ public class FakeUtils {
         sceneFindSingleInfo.setTime(new Date(random.nextLong()));
         sceneFindSingleInfo.setEvaluateInfo(evaluateInfo);
         sceneFindSingleInfo.setLike(random.nextBoolean());
-        sceneFindSingleInfo.setTagInfos(null);
+        sceneFindSingleInfo.setTags(fakeTags(Constants.MAX_COUNT_TAG));
         sceneFindSingleInfo.setTitle("标题" + random.nextInt(100));
         return sceneFindSingleInfo;
+    }
+
+    private static List<String> fakeTags(int num) {
+        List<String> list = new ArrayList<>();
+
+        for (int i = 0; i < num; i++) {
+            Random random = new Random();
+            String s = "Tag:" + random.nextInt(num);
+            list.add(s);
+        }
+        return list;
+
     }
 
 
@@ -112,7 +125,7 @@ public class FakeUtils {
         sceneFindMultiInfo.setTotalPeopleCount(total);
         sceneFindMultiInfo.setEvaluateInfo(infos);
         sceneFindMultiInfo.setLike(random.nextBoolean());
-        sceneFindMultiInfo.setTagInfos(null);
+        sceneFindMultiInfo.setTags(fakeTags(Constants.MAX_COUNT_TAG));
         sceneFindMultiInfo.setTitle("标题" + random.nextInt(100));
         return sceneFindMultiInfo;
     }

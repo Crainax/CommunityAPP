@@ -3,7 +3,6 @@ package com.unique.app.entity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -21,7 +20,7 @@ public abstract class SceneFindInfo implements Parcelable{
 
     private String title;
     private boolean isLike;
-    private TagInfo[] tagInfos;
+    private List<String> tags;
     private Date time;
     private String content;
     private String place;
@@ -51,14 +50,6 @@ public abstract class SceneFindInfo implements Parcelable{
 
     public void setLike(boolean like) {
         isLike = like;
-    }
-
-    public TagInfo[] getTagInfos() {
-        return tagInfos;
-    }
-
-    public void setTagInfos(TagInfo[] tagInfos) {
-        this.tagInfos = tagInfos;
     }
 
     public Date getTime() {
@@ -109,6 +100,15 @@ public abstract class SceneFindInfo implements Parcelable{
         this.state = state;
     }
 
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
+
+
     @Override
     public int describeContents() {
         return 0;
@@ -118,7 +118,7 @@ public abstract class SceneFindInfo implements Parcelable{
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.title);
         dest.writeByte(this.isLike ? (byte) 1 : (byte) 0);
-        dest.writeTypedArray(this.tagInfos, flags);
+        dest.writeStringList(this.tags);
         dest.writeLong(this.time != null ? this.time.getTime() : -1);
         dest.writeString(this.content);
         dest.writeString(this.place);
@@ -133,7 +133,7 @@ public abstract class SceneFindInfo implements Parcelable{
     protected SceneFindInfo(Parcel in) {
         this.title = in.readString();
         this.isLike = in.readByte() != 0;
-        this.tagInfos = in.createTypedArray(TagInfo.CREATOR);
+        this.tags = in.createStringArrayList();
         long tmpTime = in.readLong();
         this.time = tmpTime == -1 ? null : new Date(tmpTime);
         this.content = in.readString();
@@ -143,19 +143,4 @@ public abstract class SceneFindInfo implements Parcelable{
         this.state = in.readInt();
     }
 
-
-    @Override
-    public String toString() {
-        return "SceneFindInfo{" +
-                "title='" + title + '\'' +
-                ", isLike=" + isLike +
-                ", tagInfos=" + Arrays.toString(tagInfos) +
-                ", time=" + time +
-                ", content='" + content + '\'' +
-                ", place='" + place + '\'' +
-                ", images=" + images +
-                ", type=" + type +
-                ", state=" + state +
-                '}';
-    }
 }

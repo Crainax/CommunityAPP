@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -25,6 +26,7 @@ import com.unique.app.entity.SceneFindMultiInfo;
 import com.unique.app.entity.SceneFindSingleInfo;
 import com.unique.app.entity.UserInfo;
 import com.unique.app.ui.adapter.NewImageAdapter;
+import com.unique.app.ui.adapter.NewTagAdapter;
 import com.unique.app.ui.view.CenterToolbar;
 import com.unique.app.ui.view.NewSceneItemView;
 import com.unique.app.util.AlertDialogUtils;
@@ -52,9 +54,11 @@ import butterknife.OnClick;
 public class NewSceneFindActivity extends BaseActivity
         implements CenterToolbar.OnToolbarBackClickListener
         , CompoundButton.OnCheckedChangeListener
-        , NewImageAdapter.OnNewImageItemClickListener {
+        , NewImageAdapter.OnNewImageItemClickListener
+        , NewTagAdapter.OnNewTagClickListener {
 
     private static final int REQUEST_IMAGE = 1;
+
     @BindView(R.id.toolbar)
     CenterToolbar mToolbar;
     @BindView(R.id.et_new_scene_title)
@@ -79,8 +83,8 @@ public class NewSceneFindActivity extends BaseActivity
     RecyclerView rvNewSceneTag;
     @BindView(R.id.rv_new_scene_image)
     RecyclerView rvNewSceneImage;
-    private NewImageAdapter mImageAdpater;
-
+    private NewImageAdapter mImageAdapter;
+    private NewTagAdapter mTagAdapter;
 
     public static void start(Context context) {
         Intent starter = new Intent(context, NewSceneFindActivity.class);
@@ -111,6 +115,11 @@ public class NewSceneFindActivity extends BaseActivity
 
     private void initTagRecyclerView() {
 
+        mTagAdapter = new NewTagAdapter(new ArrayList<String>(), 5);
+
+        rvNewSceneTag.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        rvNewSceneTag.setAdapter(mTagAdapter);
+        mTagAdapter.setOnNewTagClickListener(this);
     }
 
     private void initToolbar() {
@@ -121,11 +130,11 @@ public class NewSceneFindActivity extends BaseActivity
 
     private void initImageRecyclerView() {
 
-        mImageAdpater = new NewImageAdapter(new ArrayList<AVFile>(), 2);
+        mImageAdapter = new NewImageAdapter(new ArrayList<AVFile>(), 2);
 
         rvNewSceneImage.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        rvNewSceneImage.setAdapter(mImageAdpater);
-        mImageAdpater.setOnNewImageItemClickListener(this);
+        rvNewSceneImage.setAdapter(mImageAdapter);
+        mImageAdapter.setOnNewImageItemClickListener(this);
 
     }
 
@@ -160,7 +169,7 @@ public class NewSceneFindActivity extends BaseActivity
         info.setTitle(etNewSceneTitle.getText().toString());
         // TODO: 2016/7/16 加入图片保存逻辑,取消场景的like.这是用户的逻辑
         info.setImages(null);
-        info.setTagInfos(null);
+        info.setTags(null);
         info.setPlace(nsivNewSceneLocation.getText());
 
         if (validateData(info) == null) {
@@ -238,7 +247,7 @@ public class NewSceneFindActivity extends BaseActivity
 
     @Override
     public void onImageItemLongClick(View view, AVFile avFile) {
-        mImageAdpater.removeImage(avFile);
+        mImageAdapter.removeImage(avFile);
     }
 
     @Override
@@ -258,7 +267,7 @@ public class NewSceneFindActivity extends BaseActivity
                                 AVFile avFile = AVFile.withFile(pathFile.getName(), pathFile);
                                 avFile.addMetaData(PictureActivity.META_AVFILE_NAME, pathUri);
                                 //加入图片列表
-                                mImageAdpater.addImage(avFile);
+                                mImageAdapter.addImage(avFile);
                             } catch (FileNotFoundException e) {
                                 Toast.makeText(NewSceneFindActivity.this, "图片文件出错.", Toast.LENGTH_SHORT).show();
                                 e.printStackTrace();
@@ -271,5 +280,31 @@ public class NewSceneFindActivity extends BaseActivity
         }
 
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onNewTagClick(View view) {
+        final EditText et = new EditText(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("请输入Tag")
+                .setView(et)
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mTagAdapter.addTag(et.getText().toString());
+                    }
+                })
+                .setNegativeButton("取消", null)
+                .show();
+    }
+
+    @Override
+    public void onTagItemClick(View view, String tag) {
+
+    }
+
+    @Override
+    public void onTagItemLongClick(View v, String tag) {
+        mTagAdapter.removeTag(tag);
     }
 }
