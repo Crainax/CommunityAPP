@@ -18,7 +18,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends AppCompatActivity implements LoginView, CenterToolbar.OnToolbarBackClickListener {
+public class LoginActivity extends AppCompatActivity implements LoginView
+        , CenterToolbar.OnToolbarBackClickListener
+        , CenterToolbar.OnToolbarActionClickListener {
 
     @BindView(R.id.et_login_studentID)
     EditText etLoginStudentID;
@@ -28,7 +30,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView, Cente
     CenterToolbar mToolbar;
 
     private ProgressDialog mProgressDialog;
-
     private LoginPresenter mLoginPresenter;
     private boolean mProcessing;
 
@@ -55,14 +56,16 @@ public class LoginActivity extends AppCompatActivity implements LoginView, Cente
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         mLoginPresenter = new LoginPresenter(this);
-
         initToolbar();
     }
 
     private void initToolbar() {
         mToolbar.setTitle("登陆");
         mToolbar.enableBackButton(true);
+        mToolbar.enableActionButton(true, true);
+        mToolbar.setAction("注册");
         mToolbar.setOnToolbarBackClickListener(this);
+        mToolbar.setOnToolbarActionClickListener(this);
     }
 
     @Override
@@ -108,6 +111,17 @@ public class LoginActivity extends AppCompatActivity implements LoginView, Cente
 
     @Override
     public void onToolbarBackClick(View view) {
+        onBackPressed();
+    }
+
+    @Override
+    public void onToolbarActionClick(View view) {
+        SignUpActivity.start(this);
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
         StartActivity.start(this);
         finish();
     }
