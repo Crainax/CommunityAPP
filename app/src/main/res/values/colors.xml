@@ -7,4 +7,5 @@
     <color name="gray_divider">#999</color>
     <color name="bt_capsule">#7fdff8</color>
     <color name="bt_capsule_pressed">#3c9af8</color>
+    <color name="tv_hint">#282828</color>
 </resources>
