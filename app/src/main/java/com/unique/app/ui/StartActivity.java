@@ -1,7 +1,6 @@
 package com.unique.app.ui;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,7 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends AppCompatActivity implements LoginView
+public class StartActivity extends AppCompatActivity implements LoginView
         , LoginDialog.OnLoginListener, RegisterDialog.OnRegisterListener {
 
     @BindView(R.id.bt_showLoginDialog)
@@ -30,19 +29,12 @@ public class LoginActivity extends AppCompatActivity implements LoginView
 
     @OnClick(R.id.bt_showLoginDialog)
     void showLoginDialog(View view) {
-        mLoginDialog = new LoginDialog(this, this);
-        mLoginDialog.show();
+        LoginActivity.start(this);
     }
 
     @OnClick(R.id.bt_showRegisterDialog)
     void showRegisterDialog(View view) {
-        mRegisterDialog = new RegisterDialog(this, this);
-        mRegisterDialog.show();
-    }
-
-    public static void start(Context context) {
-        Intent starter = new Intent(context, LoginActivity.class);
-        context.startActivity(starter);
+        SignUpActivity.start(this);
     }
 
     private LoginPresenter mLoginPresenter;
@@ -53,6 +45,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         mLoginPresenter = new LoginPresenter(this);
+
     }
 
     @Override
@@ -77,12 +70,12 @@ public class LoginActivity extends AppCompatActivity implements LoginView
 
     @Override
     public void showFailMsg(String message) {
-        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(StartActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showRegisterSuccessMsg(String message) {
-        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(StartActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
