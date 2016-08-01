@@ -3,6 +3,7 @@
 
     <!--这是我的界面的item-->
     <attr name="titleText" format="string" />
+    <attr name="textTitleColor" format="color" />
     <attr name="iconDrawable" format="reference" />
 
     <!--MeActivity下的自定义控件的属性-->
@@ -20,5 +21,7 @@
     <!--这是CenterToolbar的属性-->
     <declare-styleable name="CenterToolbar">
         <attr name="titleText" />
+        <attr name="textTitleColor" />
     </declare-styleable>
+
 </resources>

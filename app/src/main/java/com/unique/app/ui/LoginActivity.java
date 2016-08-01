@@ -11,20 +11,24 @@ import android.widget.Toast;
 
 import com.unique.app.R;
 import com.unique.app.presenter.LoginPresenter;
+import com.unique.app.ui.view.CenterToolbar;
 import com.unique.app.view.LoginView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends AppCompatActivity implements LoginView {
+public class LoginActivity extends AppCompatActivity implements LoginView, CenterToolbar.OnToolbarBackClickListener {
 
     @BindView(R.id.et_login_studentID)
     EditText etLoginStudentID;
     @BindView(R.id.et_login_password)
     EditText etLoginPassword;
+    @BindView(R.id.toolbar)
+    CenterToolbar mToolbar;
 
     private ProgressDialog mProgressDialog;
+
     private LoginPresenter mLoginPresenter;
     private boolean mProcessing;
 
@@ -51,6 +55,14 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         mLoginPresenter = new LoginPresenter(this);
+
+        initToolbar();
+    }
+
+    private void initToolbar() {
+        mToolbar.setTitle("登陆");
+        mToolbar.enableBackButton(true);
+        mToolbar.setOnToolbarBackClickListener(this);
     }
 
     @Override
@@ -93,4 +105,10 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         mLoginPresenter.login(studentId, password);
     }
 
+
+    @Override
+    public void onToolbarBackClick(View view) {
+        StartActivity.start(this);
+        finish();
+    }
 }

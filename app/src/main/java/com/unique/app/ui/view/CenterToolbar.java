@@ -54,12 +54,16 @@ public class CenterToolbar extends Toolbar {
                          defStyle, 0);
 
         String titleStr = null;
+        int titleColor = getResources().getColor(R.color.toolbar_text_color);
         //遍历属性
         for (int i = 0; i < a.getIndexCount(); i++) {
             int attr = a.getIndex(i);
             switch (attr) {
                 case R.styleable.CenterToolbar_titleText:
                     titleStr = a.getString(attr);
+                    break;
+                case R.styleable.CenterToolbar_textTitleColor:
+                    titleColor = a.getColor(attr, getResources().getColor(R.color.toolbar_text_color));
                     break;
             }
         }
@@ -69,6 +73,7 @@ public class CenterToolbar extends Toolbar {
 
         mTvTitle = ((TextView) rootView.findViewById(R.id.tv_toolbar_title_no_code));
         mClickBack = rootView.findViewById(R.id.click_toolbar_back);
+        mTvTitle.setTextColor(titleColor);
 
         //后退按钮
         mClickBack.setOnClickListener(new OnClickListener() {
