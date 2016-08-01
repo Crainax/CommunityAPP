@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.unique.app.R;
@@ -17,35 +17,33 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends AppCompatActivity implements LoginView
-        , LoginDialog.OnLoginListener, RegisterDialog.OnRegisterListener {
+public class LoginActivity extends AppCompatActivity implements LoginView {
 
-    @BindView(R.id.bt_showLoginDialog)
-    Button mBtLogin;
-    @BindView(R.id.bt_showRegisterDialog)
-    Button mBtRegister;
+    @BindView(R.id.et_login_studentID)
+    EditText etLoginStudentID;
+    @BindView(R.id.et_login_password)
+    EditText etLoginPassword;
+
     private ProgressDialog mProgressDialog;
-    private RegisterDialog mRegisterDialog;
-    private LoginDialog mLoginDialog;
+    private LoginPresenter mLoginPresenter;
+    private boolean mProcessing;
 
-    @OnClick(R.id.bt_showLoginDialog)
-    void showLoginDialog(View view) {
-        mLoginDialog = new LoginDialog(this, this);
-        mLoginDialog.show();
-    }
-
-    @OnClick(R.id.bt_showRegisterDialog)
-    void showRegisterDialog(View view) {
-        mRegisterDialog = new RegisterDialog(this, this);
-        mRegisterDialog.show();
+    @OnClick({R.id.click_login_for, R.id.click_login_login})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.click_login_for:
+                forgetPassword();
+                break;
+            case R.id.click_login_login:
+                login();
+                break;
+        }
     }
 
     public static void start(Context context) {
         Intent starter = new Intent(context, LoginActivity.class);
         context.startActivity(starter);
     }
-
-    private LoginPresenter mLoginPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,24 +83,14 @@ public class LoginActivity extends AppCompatActivity implements LoginView
         Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void closeAllDialog() {
-        if (mLoginDialog != null)
-            if (mLoginDialog.isShowing())
-                mLoginDialog.dismiss();
-        if (mRegisterDialog != null)
-            if (mRegisterDialog.isShowing())
-                mRegisterDialog.dismiss();
+    private void forgetPassword() {
+        FindPasswordActivity.start(this);
     }
 
-    @Override
-    public void onLoginButtonClick(String studentID, String name) {
-        mLoginPresenter.login(studentID, name);
+    private void login() {
+        String studentId = etLoginStudentID.getText().toString();
+        String password = etLoginPassword.getText().toString();
+        mLoginPresenter.login(studentId, password);
     }
 
-    @Override
-    public void onRegister(String school, String studentID, String name, String nickname) {
-        mLoginPresenter.register(school, studentID, name, nickname);
-
-    }
 }

@@ -21,6 +21,4 @@ public interface LoginView {
 
     void showRegisterSuccessMsg(String message);
 
-    void closeAllDialog();
-
 }

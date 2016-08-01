@@ -24,6 +24,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.NewSceneFindActivity" />
+        <activity android:name=".ui.FindPasswordActivity" />
         <activity android:name=".ui.SettingActivity" />
         <activity android:name=".ui.PartakeActivity" />
         <activity android:name=".ui.LauncherActActivity" />

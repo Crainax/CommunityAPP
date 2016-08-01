@@ -38,7 +38,6 @@ public class LoginPresenter {
                     mLoginView.showFailMsg(e.getMessage());
                 } else {
                     //登录成功的逻辑
-                    mLoginView.closeAllDialog();
                     mLoginView.goToMainActivity();
                 }
 
@@ -59,7 +58,6 @@ public class LoginPresenter {
                 if (e == null) {
                     //成功注册
                     mLoginView.showRegisterSuccessMsg("成功注册!");
-                    mLoginView.closeAllDialog();
                 } else {
                     //注册失败
                     mLoginView.showFailMsg("注册失败!");
