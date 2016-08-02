@@ -15,6 +15,7 @@ import com.unique.app.base.OnCompleteListener;
 public class UserModel {
 
 
+
     public void login(String userName, String password, OnCompleteListener onCompleteListener) {
 
         if (onCompleteListener != null) {
@@ -23,7 +24,7 @@ public class UserModel {
 
     }
 
-    public void register(String school, String studentID, String name, String nickname, OnCompleteListener onCompleteListener) {
+    public void register(String school, String studentID, String name,  OnCompleteListener onCompleteListener) {
         if (onCompleteListener != null) {
             onCompleteListener.onComplete(null);
         }

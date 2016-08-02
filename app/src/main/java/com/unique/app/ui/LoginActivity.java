@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -18,7 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends AppCompatActivity implements LoginView
+public class LoginActivity extends BaseActivity implements LoginView
         , CenterToolbar.OnToolbarBackClickListener
         , CenterToolbar.OnToolbarActionClickListener {
 
@@ -31,7 +30,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView
 
     private ProgressDialog mProgressDialog;
     private LoginPresenter mLoginPresenter;
-    private boolean mProcessing;
 
     @OnClick({R.id.click_login_for, R.id.click_login_login})
     public void onClick(View view) {
@@ -93,10 +91,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView
         Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void showRegisterSuccessMsg(String message) {
-        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
-    }
 
     private void forgetPassword() {
         FindPasswordActivity.start(this);

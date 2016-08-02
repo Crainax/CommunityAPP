@@ -2,21 +2,24 @@ package com.unique.app.view;
 
 /**
  * Project: CommnitiAPP <br/>
- * Package: com.unique.app.presenter <br/>
- * Description: The base MVP View of Login Logic.<br/>
+ * Package: com.unique.app.view <br/>
+ * Description: <br/>
  * <hr/>
  *
  * @author Crainax <br/>
  * @version 1.0 <br/>
- * @since 2016/7/7 <br/>
+ * @since 2016/8/2 <br/>
  */
-public interface LoginView {
+public interface SignUpView {
+
     void showProgress();
 
     void hideProgress();
 
-    void goToMainActivity();
-
     void showFailMsg(String message);
+
+    void showRegisterSuccessMsg(String message);
+
+    void goToLoginActivity();
 
 }

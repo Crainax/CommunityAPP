@@ -46,25 +46,5 @@ public class LoginPresenter {
 
     }
 
-    public void register(String school, String studentID, String name, String nickname) {
 
-        mLoginView.showProgress();
-
-        mUserModel.register(school, studentID, name, nickname, new OnCompleteListener() {
-            @Override
-            public void onComplete(Throwable e) {
-
-                mLoginView.hideProgress();
-                if (e == null) {
-                    //成功注册
-                    mLoginView.showRegisterSuccessMsg("成功注册!");
-                } else {
-                    //注册失败
-                    mLoginView.showFailMsg("注册失败!");
-                }
-
-            }
-        });
-
-    }
 }
