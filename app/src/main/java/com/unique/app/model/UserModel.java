@@ -29,4 +29,10 @@ public class UserModel {
             onCompleteListener.onComplete(null);
         }
     }
+
+    public void validate(String studentId, String phone, OnCompleteListener onCompleteListener) {
+        if (onCompleteListener != null) {
+            onCompleteListener.onComplete(null);
+        }
+    }
 }
