@@ -8,9 +8,9 @@ package com.unique.app.view;
  *
  * @author Crainax <br/>
  * @version 1.0 <br/>
- * @since 2016/8/2 <br/>
+ * @since 2016/8/3 <br/>
  */
-public interface FindPasswordView {
+public interface ResetPasswordView {
 
     void showProgress();
 
@@ -18,9 +18,8 @@ public interface FindPasswordView {
 
     void showFailMsg(String message);
 
-    void showValidateSucceedMsg(String message);
+    void showResetSucceedMsg(String message);
 
-    void goToNextActivity();
-
+    void finish();
 
 }

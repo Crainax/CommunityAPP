@@ -23,6 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.ResetPasswordActivity" />
         <activity android:name=".ui.SignUpActivity" />
         <activity android:name=".ui.NewSceneFindActivity" />
         <activity android:name=".ui.FindPasswordActivity" />

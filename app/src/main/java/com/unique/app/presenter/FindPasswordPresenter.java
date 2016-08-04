@@ -32,11 +32,11 @@ public class FindPasswordPresenter {
 
                 mFindPasswordView.hideProgress();
                 if (e == null) {
-                    //成功注册
-                    mFindPasswordView.showRegisterSuccessMsg("验证成功!");
+                    //成功验证
+                    mFindPasswordView.showValidateSucceedMsg("验证成功!");
                     mFindPasswordView.goToNextActivity();
                 } else {
-                    //注册失败
+                    //注册验证
                     mFindPasswordView.showFailMsg("验证失败!");
                 }
 

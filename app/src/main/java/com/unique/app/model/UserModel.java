@@ -35,4 +35,12 @@ public class UserModel {
             onCompleteListener.onComplete(null);
         }
     }
+
+    public void reset(String password, OnCompleteListener onCompleteListener) {
+        if (onCompleteListener != null) {
+            onCompleteListener.onComplete(null);
+        }
+    }
+
+
 }

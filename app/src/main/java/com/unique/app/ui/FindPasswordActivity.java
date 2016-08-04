@@ -81,7 +81,7 @@ public class FindPasswordActivity extends BaseActivity implements FindPasswordVi
     }
 
     @Override
-    public void showRegisterSuccessMsg(String message) {
+    public void showValidateSucceedMsg(String message) {
         Toast.makeText(FindPasswordActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 
